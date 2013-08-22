@@ -3,7 +3,21 @@
 @main(title = "::: PAaS Data",location) {
     <!-- @dataitems.size() -->
 
-    <p>You may select the data from the local storage for the analyses ... read more >>></p>
+    <div class="expandable content_message_block">
+        You may select the data from the local storage for the analyses. The local storage is a centralized storage
+        place that grid users have access to.  The selected data can be used for this login session only, Or they can
+        be saved for the future use.
+    </div>
+
+    <script type="text/javascript">
+        $(".content_message_block").expander({
+            slicePoint: 100,
+            widow: 2,
+            expandEffect: 'show',
+            userCollapseText: '[Read Less]',
+            expandText: '[Read More]'
+        });
+    </script>
 
     <select data-placeholder="Click to begin" class="chosen-select" multiple style="width: 350px; display: none;" tabindex="-1">
         <option value=""></option>
