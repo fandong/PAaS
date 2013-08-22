@@ -1,5 +1,23 @@
 @(location: String, dataitems: List[DataItem])
 
 @main(title = "::: PAaS Data",location) {
-    <h2>@dataitems.size()</h2>
+    <!-- <h2>@dataitems.size()<h2> -->
+
+    <p>You may select the data from the local storage for the analyses ... read more >>></p>
+
+    <select data-placeholder="Click to begin" class="chosen-select" multiple style="width: 350px; display: none;" tabindex="-1">
+        <option value=""></option>
+        <option value="United States">data file 1</option>
+        <option value="United Kingdom">data file 2</option>
+    </select>
+
+    <script type="text/javascript">
+        var config = {
+            '.chosen-select'           : {width:"100%", display_selected_options:false}
+        }
+
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
 }
