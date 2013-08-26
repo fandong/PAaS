@@ -1,7 +1,6 @@
-@(location: String, dataitems: List[DataItem])
+@(location: String, dataitems: List[java.io.File])
 
-@main(title = "::: PAaS Data",location) {
-    <!-- @dataitems.size() -->
+@main(title = "::: PAaS Data",location = location) {
 
     <div class="expandable content_message_block">
         You may select the data from the local storage for the analyses. The local storage is a centralized storage
@@ -19,19 +18,28 @@
         });
     </script>
 
-    <select data-placeholder="Click to begin" class="chosen-select" multiple style="width: 350px; display: none;" tabindex="-1">
+    <select id= "data-grid-file-select" data-placeholder="Click to begin" class="chosen-select" multiple style="width: 350px; display: none;" tabindex="-1">
         <option value=""></option>
-        <option value="United States">data file 1</option>
-        <option value="United Kingdom">data file 2</option>
+
+        @for(item <- dataitems) {
+            <option id="dataitems" value="@item.getCanonicalPath" >@item.getPath</option>
+        }
+
     </select>
 
     <script type="text/javascript">
         var config = {
-            '.chosen-select'           : {width:"100%", display_selected_options:false}
-        }
+        '.chosen-select' : { width : "100%", display_selected_options : false }
+        } ;
 
         for (var selector in config) {
             $(selector).chosen(config[selector]);
         }
+    </script>
+
+    <script type="text/javascript">
+        $(document).on("change", "#data-grid-file-select", function () {
+            localDataSelection = $(this).val() || [];
+        });
     </script>
 }
