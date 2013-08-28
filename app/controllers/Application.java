@@ -1,9 +1,11 @@
 package controllers;
 
+import models.DataItem;
 import play.*;
 import play.mvc.*;
 
 import views.html.*;
+import views.html.datagrid;
 
 public class Application extends Controller {
   
@@ -12,6 +14,10 @@ public class Application extends Controller {
     }
 
     public static Result getDataFromGrid() {
-        return Results.TODO;
+        return ok(datagrid.render(" > Data On Grid", DataItem.getDataFromGrid()));
+    }
+
+    public static Result savedData() {
+        return TODO;
     }
 }
